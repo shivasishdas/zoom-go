@@ -21,4 +21,3 @@ func (client Client) DeleteMeeting(meetingId int) (err error) {
 
 	return
 }
-

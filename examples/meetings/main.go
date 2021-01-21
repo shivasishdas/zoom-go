@@ -17,16 +17,46 @@ func main() {
 	//getMeetingInvitationExample()
 	//addMeetingRegistrantExample()
 	//listMeetingRegistrantsExample()
-	updateMeetingStatusExample()
+	//updateMeetingStatusExample()
+	//toggleMeetingRecordingExample()
+	getMeetingRecordings()
+}
+
+func toggleMeetingRecordingExample() {
+	//Create a new Zoom API client
+	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"),
+		os.Getenv("ZOOM_AUTH_TOKEN"))
+	//Use the client to list meetings
+	var err error
+
+	err = apiClient.ToggleMeetingRecording("84852789419", zoomAPI.Stop)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func getMeetingRecordings() {
+	//Create a new Zoom API client
+	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"),
+		os.Getenv("ZOOM_AUTH_TOKEN"))
+
+	resp, err := apiClient.GetMeetingRecording("28yer5dxTqOKyhum6wUJog==")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print(resp)
 }
 
 func listMeetingExample() {
 
 	//Create a new Zoom API client
-	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"), os.Getenv("ZOOM_AUTH_TOKEN"))
+	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"),
+		os.Getenv("ZOOM_AUTH_TOKEN"))
 
 	//Retrieve the userId from the env variable
-	userId := os.Getenv("ZOOM_USER_ID")
+	userId := "shivasish.dd@gmail.com"
 
 	//Use the client to list meetings
 	var resp zoomAPI.ListMeetingsAPIResponse
@@ -196,7 +226,7 @@ func listMeetingRegistrantsExample() {
 
 }
 
-func updateMeetingStatusExample(){
+func updateMeetingStatusExample() {
 
 	//Create a new Zoom API client
 	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"),

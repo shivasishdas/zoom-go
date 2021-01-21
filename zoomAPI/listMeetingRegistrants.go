@@ -28,4 +28,3 @@ func (client Client) ListMeetingRegistrants(meetingId int) (apiResponse ListMeet
 
 	return
 }
-

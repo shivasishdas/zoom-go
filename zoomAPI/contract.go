@@ -227,3 +227,35 @@ type ListMeetingRegistrantsResponse struct {
 type UpdateMeetingStatusRequest struct {
 	Action string `json:"action"`
 }
+
+type ToggleMeetingRecordingRequest struct {
+	Method string `json:"method"`
+}
+
+type GetMeetingRecordingResponse struct {
+	UUID           string    `json:"uuid"`
+	ID             int64     `json:"id"`
+	AccountID      string    `json:"account_id"`
+	HostID         string    `json:"host_id"`
+	Topic          string    `json:"topic"`
+	Type           int       `json:"type"`
+	StartTime      time.Time `json:"start_time"`
+	Timezone       string    `json:"timezone"`
+	Duration       int       `json:"duration"`
+	TotalSize      int       `json:"total_size"`
+	RecordingCount int       `json:"recording_count"`
+	ShareURL       string    `json:"share_url"`
+	RecordingFiles []struct {
+		ID             string    `json:"id"`
+		MeetingID      string    `json:"meeting_id"`
+		RecordingStart time.Time `json:"recording_start"`
+		RecordingEnd   time.Time `json:"recording_end"`
+		FileType       string    `json:"file_type"`
+		FileExtension  string    `json:"file_extension"`
+		FileSize       int       `json:"file_size"`
+		PlayURL        string    `json:"play_url"`
+		DownloadURL    string    `json:"download_url"`
+		Status         string    `json:"status"`
+		RecordingType  string    `json:"recording_type"`
+	} `json:"recording_files"`
+}

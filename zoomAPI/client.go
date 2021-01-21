@@ -46,7 +46,7 @@ func (client Client) executeRequest(endpoint string, httpMethod string) (respons
 	if httpStatusCode != 200 {
 		switch httpStatusCode {
 		case 401:
-			err = errors.New(fmt.Sprintf("unauthorized error %d encountered, " +
+			err = errors.New(fmt.Sprintf("unauthorized error %d encountered, "+
 				"check your auth token if it's still valid", httpStatusCode))
 		default:
 			err = errors.New(fmt.Sprintf("http error %d encountered in API call", httpStatusCode))
@@ -90,7 +90,7 @@ func (client Client) executeRequestWithBody(endpoint string, httpMethod string, 
 
 		switch httpStatusCode {
 		case 401:
-			err = errors.New(fmt.Sprintf("unauthorized error %d encountered, " +
+			err = errors.New(fmt.Sprintf("unauthorized error %d encountered, "+
 				"check your auth token if it's still valid", httpStatusCode))
 		default:
 			err = errors.New(fmt.Sprintf("http error %d encountered in API call", httpStatusCode))

@@ -13,7 +13,7 @@ import (
 */
 
 func (client Client) UpdateMeetingStatus(meetingId int, status string) (err error) {
-	
+
 	updateMeetingStatusRequest := UpdateMeetingStatusRequest{
 		Action: status,
 	}
