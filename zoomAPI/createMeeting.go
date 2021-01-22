@@ -3,6 +3,7 @@ package zoomAPI
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/shivasishdas/zoom-go/zoomAPI/constants/meeting"
 	"net/http"
 )
 
@@ -66,8 +67,8 @@ func (client Client) CreateMeeting(userId string,
 		Timezone:    timezone,
 		Password:    password,
 		Agenda:      agenda,
-		Recurrence:  *recurrence,
-		Settings:    *settings,
+		Recurrence:  recurrence,
+		Settings:    settings,
 	}
 
 	var reqBody []byte
@@ -92,4 +93,41 @@ func (client Client) CreateMeeting(userId string,
 
 	return
 
+}
+
+func (client Client) CreateInstantMeetingWithDefaultOptions(meetingTopic, meetingAgenda, userName string) (createMeetingResponse CreateMeetingResponse, err error) {
+
+	resp := CreateMeetingResponse{}
+
+	createMeetingRequest := CreateMeetingRequest{
+		Topic:      meetingTopic,
+		Type:       meeting.MeetingTypeInstant,
+		Agenda:     meetingAgenda,
+		Duration:   120,
+		Timezone:   "Asia/Kolkata",
+		Recurrence: nil,
+		Settings:   nil,
+	}
+
+	var reqBody []byte
+	reqBody, err = json.Marshal(createMeetingRequest)
+	if err != nil {
+		return resp, err
+	}
+
+	endpoint := fmt.Sprintf("/users/%s/meetings", userName)
+	httpMethod := http.MethodPost
+
+	var b []byte
+	b, err = client.executeRequestWithBody(endpoint, httpMethod, reqBody)
+	if err != nil {
+		return resp, err
+	}
+
+	err = json.Unmarshal(b, &resp)
+	if err != nil {
+		return resp, err
+	}
+
+	return resp, nil
 }

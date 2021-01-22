@@ -25,16 +25,16 @@ type Meeting struct {
 }
 
 type CreateMeetingRequest struct {
-	Topic       string     `json:"topic"`
-	Type        int        `json:"type"`
-	StartTime   string     `json:"start_time"`
-	Duration    int        `json:"duration"`
-	ScheduleFor string     `json:"schedule_for"`
-	Timezone    string     `json:"timezone"`
-	Password    string     `json:"password"`
-	Agenda      string     `json:"agenda"`
-	Recurrence  Recurrence `json:"recurrence"`
-	Settings    Settings   `json:"settings"`
+	Topic       string      `json:"topic"`
+	Type        int         `json:"type"`
+	StartTime   string      `json:"start_time"`
+	Duration    int         `json:"duration"`
+	ScheduleFor string      `json:"schedule_for"`
+	Timezone    string      `json:"timezone"`
+	Password    string      `json:"password"`
+	Agenda      string      `json:"agenda"`
+	Recurrence  *Recurrence `json:"recurrence"`
+	Settings    *Settings   `json:"settings"`
 }
 
 type Recurrence struct {

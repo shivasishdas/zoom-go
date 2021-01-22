@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/donvito/zoom-go/zoomAPI"
-	"github.com/donvito/zoom-go/zoomAPI/constants/meeting"
+	"github.com/shivasishdas/zoom-go/zoomAPI"
+	"github.com/shivasishdas/zoom-go/zoomAPI/constants/meeting"
 	"log"
 	"os"
 )
 
 func main() {
 
-	//createMeetingExample()
+	createMeetingExample()
 	//listMeetingExample()
 	//deleteMeetingExample()
 	//getMeetingByIdExample()
@@ -19,7 +19,7 @@ func main() {
 	//listMeetingRegistrantsExample()
 	//updateMeetingStatusExample()
 	//toggleMeetingRecordingExample()
-	getMeetingRecordings()
+	//getMeetingRecordings()
 }
 
 func toggleMeetingRecordingExample() {
@@ -76,11 +76,11 @@ func listMeetingExample() {
 func createMeetingExample() {
 
 	//Create a new Zoom API client
-	apiClient := zoomAPI.NewClient(os.Getenv("ZOOM_API_URL"),
-		os.Getenv("ZOOM_AUTH_TOKEN"))
+	apiClient := zoomAPI.NewClient("https://api.zoom.us/v2",
+		"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IkVMTW1QWmxoUmJlbThKRjVrbGNMUlEiLCJleHAiOjE2MTE4OTA0NjEsImlhdCI6MTYxMTI4NTY2MX0.iFTmb6z6fVZwGy51u1FukC8t7aVZGpuOA6o27WQoJig")
 
 	//Retrieve the userId from the env variable
-	userId := os.Getenv("ZOOM_USER_ID")
+	userId := "shivasish.dd@gmail.com"
 
 	//Use the API client to create a meeting
 	var resp zoomAPI.CreateMeetingResponse
@@ -92,7 +92,7 @@ func createMeetingExample() {
 		"2020-05-31T22:00:00Z",
 		30,
 		"",
-		"Asia/Singapore",
+		"Asia/Kolkata",
 		"pass8888", //set this with your desired password for better security, max 8 chars
 		"Discuss next steps and ways to contribute for this project.",
 		nil,
